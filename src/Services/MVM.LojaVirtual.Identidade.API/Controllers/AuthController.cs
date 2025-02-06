@@ -11,9 +11,8 @@ using MVM.LojaVirtual.Identidade.API.Models;
 
 namespace MVM.LojaVirtual.Identidade.API.Controllers;
 
-[ApiController]
 [Route("api/[controller]")]
-public class AuthController : ControllerBase
+public class AuthController : MainController
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
@@ -29,7 +28,7 @@ public class AuthController : ControllerBase
     [HttpPost("registrar")]
     public async Task<ActionResult> Registrar([FromBody] UsuarioRegisto request)
     {
-        if (!ModelState.IsValid) return BadRequest();
+        if (!ModelState.IsValid) return CustomResponse();
 
         var user = new IdentityUser
         {
@@ -40,10 +39,16 @@ public class AuthController : ControllerBase
 
         var result = await _userManager.CreateAsync(user, request.Senha);
 
-        if (!result.Succeeded) return BadRequest();
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                AddError(error.Description);
+            }
+            return CustomResponse();
+        }
         
-        await _signInManager.SignInAsync(user, false);
-        return Ok(GerarToken(request.Email));
+        return CustomResponse(await GerarToken(request.Email));
     }
 
     [HttpPost("login")]
@@ -54,10 +59,23 @@ public class AuthController : ControllerBase
         var result = await _signInManager.PasswordSignInAsync(request.Email, request.Senha, false, true);
         if (!result.Succeeded)
         {
-            return BadRequest();
+            if (result.IsLockedOut)
+            {
+                AddError("Usuário bloqueado temporariamente.");
+                return CustomResponse();
+            }
+
+            if (result.IsNotAllowed)
+            {
+                AddError("Usuário sem permissão");
+                return CustomResponse();
+            }
+            
+            AddError("Usuário ou senha incorretos.");
+            return CustomResponse();
         }
 
-        return Ok(GerarToken(request.Email));
+        return CustomResponse(await GerarToken(request.Email));
     }
 
     private async Task<UsuarioLoginResponse> GerarToken(string email)
