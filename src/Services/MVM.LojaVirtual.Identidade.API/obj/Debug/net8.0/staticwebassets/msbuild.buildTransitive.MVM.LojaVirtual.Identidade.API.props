@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/MVM.LojaVirtual.Identidade.API.props" />
+</Project>

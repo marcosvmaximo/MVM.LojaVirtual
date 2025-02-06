@@ -1,0 +1,12 @@
+﻿services:
+  mvm.lojavirtual.identidade:
+    image: mvm.lojavirtual.identidade
+    build:
+      context: .
+      dockerfile: src/Services/MVM.LojaVirtual.Identidade/Dockerfile
+
+  mvm.lojavirtual.mvc:
+    image: mvm.lojavirtual.mvc
+    build:
+      context: .
+      dockerfile: src/Web/MVM.LojaVirtual.MVC/Dockerfile
