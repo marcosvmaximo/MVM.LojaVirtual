@@ -1,0 +1,34 @@
+@model MVM.LojaVirtual.MVC.Models.Auth.UsuarioLogin
+
+@{
+Layout = "_Layout";
+ViewData["Title"] = "Login";
+}
+<h1>@ViewData["Title"]</h1>
+<section style="max-width: 500px; margin: auto">
+    <form asp-action="Login" asp-controller="Auth" asp-route-returnUrl="ReturnUrl" method="post">
+        <h5>Realize o login da sua conta.</h5>
+        <hr/>
+
+        <SummaryViewComponent></SummaryViewComponent>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control"/>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Senha"></label>
+            <input asp-for="Senha" type="password" class="form-control"/>
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+
+        <button asp-action="Login" asp-controller="Auth" class="btn btn-primary">Entrar</button>
+
+        <p>Não possui uma conta? <a asp-action="Registrar" asp-controller="Auth">Crie aqui</a></p>
+    </form>
+</section>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"/>
+}

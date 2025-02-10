@@ -1,0 +1,24 @@
+@using MVM.LojaVirtual.MVC.Services
+@using MVM.LojaVirtual.MVC.Services.Interfaces
+@inject IUserService userService;
+
+<ul class="navbar-nav">
+    @if (userService.EstaAutenticado())
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" title="Manager">@userService.ObterEmail()</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-danger" asp-action="Logout" asp-controller="Auth">Sair</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item" style="padding-right: 10px;">
+            <a class="btn btn-outline-success" asp-action="Login" asp-controller="Auth">Entrar</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-outline-primary" asp-action="Registrar" asp-controller="Auth">Criar Conta</a>
+        </li>
+    }
+</ul>

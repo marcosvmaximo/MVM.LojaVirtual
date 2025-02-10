@@ -17,6 +17,98 @@ html {
   min-height: 100%;
 }
 
+/* Estilização geral da página */
 body {
-  margin-bottom: 60px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  font-family: 'Arvo', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: .5rem;
+  height: 100vh;
+}
+
+/* Container centralizado */
+.container {
+  width: 100%;
+  background: white;
+  border-radius: 5px;
+  padding: 25px 30px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Títulos */
+h1, h4 {
+  color: #333;
+}
+
+/* Estilização dos formulários */
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Campos de entrada */
+input.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+input.form-control:focus {
+  border-color: #2575fc;
+  box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+  outline: none;
+}
+
+/* Botões */
+button.btn-primary {
+  width: 100%;
+  background: #2575fc;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.btn-primary:hover {
+  background: #1a5dcf;
+}
+
+/* Links */
+p a {
+  color: #2575fc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Mensagens de erro */
+.text-danger {
+  font-size: 14px;
+  color: red;
+  margin-top: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .container {
+    max-width: 90%;
+    padding: 20px;
+  }
 }

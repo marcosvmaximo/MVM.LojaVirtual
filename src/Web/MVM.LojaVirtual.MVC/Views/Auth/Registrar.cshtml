@@ -1,0 +1,40 @@
+@model MVM.LojaVirtual.MVC.Models.Auth.UsuarioRegisto
+
+@{
+Layout = "_Layout";
+ViewData["Title"] = "Registrar";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<section style="max-width: 500px; margin: auto">
+    <form asp-action="Registrar" asp-controller="Auth" method="post">
+        <h4 class="text-center">Registre sua nova conta.</h4>
+        <hr/>
+        
+        <SummaryViewComponent></SummaryViewComponent>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control"/>
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Senha"></label>
+            <input asp-for="Senha" type="password" class="form-control"/>
+            <span asp-validation-for="Senha" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmarSenha"></label>
+            <input asp-for="ConfirmarSenha" type="password" class="form-control"/>
+            <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
+        </div>
+
+        <button asp-action="Registrar" asp-controller="Auth" class="btn btn-primary w-100">Registrar</button>
+
+        <p class="text-center mt-3">Já tem uma conta? <a asp-action="Login" asp-controller="Auth">Faça login</a></p>
+    </form>
+</section>
+
+@section Scripts
+{
+<partial name="_ValidationScriptsPartial"/>
+}

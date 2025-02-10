@@ -1,8 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "2UjJ1mUb73It7od2N+Qfd9wORwhXkQjIiSuF2L9EEkotcjSzkHgKSI5pCzFWO+qCccVNApr9n5LvVw8jEs9C4Q==",
+  "dgSpecHash": "yH6oYnujk2XSl4WxkjDw0wFBuCkD/Yk5Hm+/vh1mHPcKecTgwV1DuopsPWhqXlvlHbhIaHfr1ZyM+gn2YZ94Jw==",
   "success": true,
   "projectFilePath": "/Users/marcosmaximo/RiderProjects/MVM.LojaVirtual/src/Web/MVM.LojaVirtual.MVC/MVM.LojaVirtual.MVC.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/marcosmaximo/.nuget/packages/microsoft.identitymodel.abstractions/7.1.2/microsoft.identitymodel.abstractions.7.1.2.nupkg.sha512",
+    "/Users/marcosmaximo/.nuget/packages/microsoft.identitymodel.jsonwebtokens/7.1.2/microsoft.identitymodel.jsonwebtokens.7.1.2.nupkg.sha512",
+    "/Users/marcosmaximo/.nuget/packages/microsoft.identitymodel.logging/7.1.2/microsoft.identitymodel.logging.7.1.2.nupkg.sha512",
+    "/Users/marcosmaximo/.nuget/packages/microsoft.identitymodel.tokens/7.1.2/microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
+    "/Users/marcosmaximo/.nuget/packages/system.identitymodel.tokens.jwt/7.1.2/system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
+  ],
   "logs": []
 }
