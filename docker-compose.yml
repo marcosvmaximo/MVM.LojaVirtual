@@ -10,3 +10,9 @@
     build:
       context: .
       dockerfile: src/Web/MVM.LojaVirtual.MVC/Dockerfile
+
+  mvm.lojavirtual.catalogo.api:
+    image: mvm.lojavirtual.catalogo.api
+    build:
+      context: .
+      dockerfile: src/Services/MVM.LojaVirtual.Catalogo.API/Dockerfile
