@@ -1,6 +1,6 @@
-namespace MVM.LojaVirtual.Identidade.API.Extensions;
+namespace MVM.LojaVirtual.IdentityCore;
 
-public class AppSettings
+public class IdentityAppSettings
 {
     public string Secret { get; set; }
     public string Issuer { get; set; }

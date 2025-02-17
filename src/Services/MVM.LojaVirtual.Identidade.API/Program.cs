@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MVM.LojaVirtual.Identidade.API.Data;
 using MVM.LojaVirtual.Identidade.API.Extensions;
+using MVM.LojaVirtual.IdentityCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,32 +28,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-#region JWT
-var appSettingsSection = builder.Configuration.GetSection("AppSettings");
-builder.Services.Configure<AppSettings>(appSettingsSection);
+// Jwt Config Core
+builder.Services.AddJwtConfiguration(builder.Configuration);
 
-AppSettings appSettings = appSettingsSection.Get<AppSettings>() ?? throw new ArgumentNullException("Não encontrado AppSettings.");
-var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-
-builder.Services.AddAuthentication(opt =>
-{
-    opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-}).AddJwtBearer(bearerOpt =>
-{
-    bearerOpt.RequireHttpsMetadata = true;
-    bearerOpt.SaveToken = true;
-    bearerOpt.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true, // Valida quem foi o emissor do token
-        ValidateAudience = true, // Valida quem é a aplicação "foco" do token
-        ValidateIssuerSigningKey = true, // Valida a chave de entrada, do emissor
-        IssuerSigningKey = new SymmetricSecurityKey(key), // Algoritmo para a chave
-        ValidAudience = appSettings.Audience,
-        ValidIssuer = appSettings.Issuer
-    };
-});
-#endregion
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

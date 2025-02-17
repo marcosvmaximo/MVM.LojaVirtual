@@ -16,7 +16,7 @@ public class HomeController : Controller
         return View();
     }
 
-    [Route("error/{id:length(3,3}")]
+    [Route("error/{id:length(3,3)}")]
     public IActionResult Error(int id)
     {
         var modelError = new ErrorViewModel();

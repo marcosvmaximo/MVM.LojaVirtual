@@ -1,6 +1,6 @@
 namespace MVM.LojaVirtual.Identidade.API.Models;
 
-public class UsuarioLoginResponse
+public class UsuarioResponse
 {
     public string AcessToken { get; set; }
     public double ExpiresIn { get; set; }

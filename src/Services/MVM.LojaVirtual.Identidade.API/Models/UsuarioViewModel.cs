@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MVM.LojaVirtual.Identidade.API.Models;
 
-public class UsuarioRegisto
+public class UsuarioRegistoViewModel
 {
     [Required(ErrorMessage = "O campo {0} é obrigatório.")]
     [EmailAddress(ErrorMessage = "O campo {0} está em um formato inválido.")]
@@ -16,7 +16,7 @@ public class UsuarioRegisto
     public string ConfirmarSenha { get; set; }
 }
 
-public class UsuarioLogin
+public class UsuarioLoginViewModel
 {
     [Required(ErrorMessage = "O campo {0} é obrigatório.")]
     [EmailAddress(ErrorMessage = "O campo {0} está em um formato inválido.")]

@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using MVM.LojaVirtual.Identidade.API.Extensions;
 using MVM.LojaVirtual.Identidade.API.Models;
+using MVM.LojaVirtual.IdentityCore;
 
 namespace MVM.LojaVirtual.Identidade.API.Controllers;
 
@@ -16,9 +16,9 @@ public class AuthController : MainController
 {
     private readonly UserManager<IdentityUser> _userManager;
     private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly AppSettings _appSettings;
+    private readonly IdentityAppSettings _appSettings;
 
-    public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
+    public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<IdentityAppSettings> appSettings)
     {
         _signInManager = signInManager;
         _userManager = userManager;
@@ -26,7 +26,7 @@ public class AuthController : MainController
     }
     
     [HttpPost("registrar")]
-    public async Task<ActionResult> Registrar([FromBody] UsuarioRegisto request)
+    public async Task<ActionResult> Registrar([FromBody] UsuarioRegistoViewModel request)
     {
         if (!ModelState.IsValid) return CustomResponse();
 
@@ -52,7 +52,7 @@ public class AuthController : MainController
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult> Login([FromBody] UsuarioLogin request)
+    public async Task<ActionResult> Login([FromBody] UsuarioLoginViewModel request)
     {
         if (!ModelState.IsValid) return BadRequest();
 
@@ -78,9 +78,10 @@ public class AuthController : MainController
         return CustomResponse(await GerarToken(request.Email));
     }
 
-    private async Task<UsuarioLoginResponse> GerarToken(string email)
+    private async Task<UsuarioResponse> GerarToken(string email)
     {
-        var user = await _userManager.FindByEmailAsync(email) ?? throw new Exception("Usuário não encontrado ao gerar o token.");
+        var user = await _userManager.FindByEmailAsync(email) 
+                   ?? throw new Exception("Usuário não encontrado ao gerar o token.");
         var claims = await _userManager.GetClaimsAsync(user);
         var roles = await _userManager.GetRolesAsync(user);
         
@@ -113,7 +114,7 @@ public class AuthController : MainController
 
         var encodedToken = tokenHandler.WriteToken(token);
 
-        var response = new UsuarioLoginResponse
+        var response = new UsuarioResponse
         {
             AcessToken = encodedToken,
             ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiresIn).TotalSeconds,

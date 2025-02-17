@@ -23,8 +23,8 @@ public static class WebAppConfig
         }
         else
         {
-            app.UseExceptionHandler("error/500");
-            app.UseStatusCodePagesWithRedirects("error/{0}");
+            app.UseExceptionHandler("/error/500");
+            app.UseStatusCodePagesWithRedirects("/error/{0}");
             app.UseHsts();
         }
 

@@ -14,31 +14,29 @@ public class ProdutoMapping : IEntityTypeConfiguration<Produto>
 
         builder.Property(p => p.Nome)
             .IsRequired()
-            .HasColumnType("varchar(100)");
+            .HasColumnType("VARCHAR(100)");
 
         builder.Property(p => p.Descricao)
             .IsRequired()
-            .HasColumnType("varchar(500)");
+            .HasColumnType("VARCHAR(500)");
 
         builder.Property(p => p.Valor)
             .IsRequired()
-            .HasColumnType("decimal(18,2)");
+            .HasColumnType("DECIMAL(10,2)");
 
         builder.Property(p => p.QuantidadeEstoque)
             .IsRequired()
-            .HasColumnType("int");
+            .HasColumnType("INT");
 
         builder.Property(p => p.Ativo)
             .IsRequired()
-            .HasColumnType("bool");
+            .HasColumnType("tinyint(1)");
 
-        builder.Property(p => p.DataCadatro)
+        builder.Property(p => p.DataCadastro)
             .IsRequired()
-            .HasColumnType("datetime");
+            .HasColumnType("DATETIME");
 
         builder.Property(p => p.Imagem)
-            .HasColumnType("varchar(250)");
-
-        
+            .HasColumnType("VARCHAR(250)");
     }
 }
