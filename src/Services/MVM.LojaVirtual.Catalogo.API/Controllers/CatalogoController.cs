@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MVM.LojaVirtual.Catalogo.API.Data;
 using MVM.LojaVirtual.Catalogo.API.Data.Repositories;
 using MVM.LojaVirtual.Catalogo.API.Models;
+using MVM.LojaVirtual.IdentityCore;
 
 namespace MVM.LojaVirtual.Catalogo.API.Controllers;
 
@@ -22,6 +23,7 @@ public class CatalogoController : Controller
     }
     
     [HttpGet("catalogo/produtos/{id}")]
+    [ClaimsAuthorization("Catalogo", "Ler")]
     public async Task<Produto?> ProdutoDetalhe(Guid id)
     {
         return await _repository.ObterPorId(id);
