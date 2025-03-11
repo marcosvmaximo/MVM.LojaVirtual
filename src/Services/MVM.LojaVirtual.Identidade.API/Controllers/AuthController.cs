@@ -118,11 +118,11 @@ public class AuthController : MainController
         {
             AcessToken = encodedToken,
             ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiresIn).TotalSeconds,
-            UsuarioToken = new UsuarioToken
+            UserToken = new UserToken
             {
                 Id = user.Id,
                 Email = user.Email ?? string.Empty,
-                Claims = claims.Select(c => new UsuarioClaim { Type = c.Type, Value = c.Value})
+                Claims = claims.Select(c => new UserClaim { Type = c.Type, Value = c.Value})
             }
         };
 

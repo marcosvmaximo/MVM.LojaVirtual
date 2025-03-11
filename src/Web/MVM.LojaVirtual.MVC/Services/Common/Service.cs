@@ -22,9 +22,9 @@ public abstract class Service
         switch ((int)response.StatusCode)
         {
             case 400: return false;
-            case 401: return false;
-            case 403: return false;
-            case 404: return false;
+            case 401:
+            case 403:
+            case 404:
             case 500: throw new HttpRequestException("Error no servidor", new Exception(), HttpStatusCode.InternalServerError);
         }
 

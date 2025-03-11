@@ -39,7 +39,7 @@ public class RequesitoClaimFilter : IAuthorizationFilter
             return;
         }
 
-        if (CustomAuthorization.ValidarClaimUsuario(context.HttpContext, _claim.Type, _claim.Value))
+        if (!CustomAuthorization.ValidarClaimUsuario(context.HttpContext, _claim.Type, _claim.Value))
         {
             context.Result = new StatusCodeResult(403);
         }

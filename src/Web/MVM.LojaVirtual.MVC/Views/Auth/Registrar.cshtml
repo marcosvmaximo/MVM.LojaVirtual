@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Mvc.ModelBinding
 @model MVM.LojaVirtual.MVC.Models.Auth.UsuarioRegisto
 
 @{
@@ -10,8 +11,8 @@ ViewData["Title"] = "Registrar";
     <form asp-action="Registrar" asp-controller="Auth" method="post">
         <h4 class="text-center">Registre sua nova conta.</h4>
         <hr/>
+        <vc:summary></vc:summary>
         
-        <SummaryViewComponent></SummaryViewComponent>
         <div class="form-group">
             <label asp-for="Email"></label>
             <input asp-for="Email" class="form-control"/>

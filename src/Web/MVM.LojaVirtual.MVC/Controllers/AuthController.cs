@@ -36,7 +36,7 @@ public class AuthController : MainController
         var result = await _service.Registrar(request);
         if (ResponsePossuiErros(result.ErrorResponse))
         {
-            return View();
+            return View(request);
         }
         // Sucesso
         await RealizarLogin(result);
