@@ -16,11 +16,11 @@ public class AuthService : Service, IAuthService
         httpClient.BaseAddress = new Uri(settings.Value.AutenticacaoUrl);
         _httpClient = httpClient;
     }
-    public async Task<AuthenticationResponseViewModel> Login(UsuarioLogin usuario)
+    public async Task<AuthenticationResponseViewModel> Login(UsuarioLoginViewModel usuario)
     {
         // Precisa serializar em Json, para enviar no corpo da requisição (como string mesmo)
         var content = SerializarObjeto(usuario);
-        var responseHttp = await _httpClient.PostAsync("/api/Auth/login", content);
+        var responseHttp = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/login", content);
         
         if (!TratarErrorRequest(responseHttp))
         {
@@ -31,11 +31,11 @@ public class AuthService : Service, IAuthService
         return DeserializarObjeto<AuthenticationResponseViewModel>(await responseHttp.Content.ReadAsStringAsync());
     }
 
-    public async Task<AuthenticationResponseViewModel> Registrar(UsuarioRegisto usuario)
+    public async Task<AuthenticationResponseViewModel> Registrar(UsuarioRegistoViewModel usuario)
     {
         // Precisa serializar em Json, para enviar no corpo da requisição (como string mesmo)
         var content = SerializarObjeto(usuario);
-        var responseHttp = await _httpClient.PostAsync("/api/Auth/registrar", content);
+        var responseHttp = await _httpClient.PostAsync($"{_httpClient.BaseAddress}/registrar", content);
         
         if (!TratarErrorRequest(responseHttp))
         {

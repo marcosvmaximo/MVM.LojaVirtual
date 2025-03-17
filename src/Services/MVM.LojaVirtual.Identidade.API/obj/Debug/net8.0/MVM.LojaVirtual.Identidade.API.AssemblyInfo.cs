@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MVM.LojaVirtual.Identidade.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8a77ed57cf978cf0ae8bc60d4f290c0ae34726c4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e406c963383c7aff82197910036bace6b2428f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("MVM.LojaVirtual.Identidade.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MVM.LojaVirtual.Identidade.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

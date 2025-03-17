@@ -7,6 +7,7 @@ using MVM.LojaVirtual.IdentityCore;
 namespace MVM.LojaVirtual.Catalogo.API.Controllers;
 
 [ApiController]
+[Route("api/[controller]")]
 public class CatalogoController : Controller
 {
     private readonly IProdutoRepository _repository;
@@ -16,13 +17,13 @@ public class CatalogoController : Controller
         _repository = repository;
     }
 
-    [HttpGet("catalogo/produtos")]
+    [HttpGet("produtos")]
     public async Task<IEnumerable<Produto?>> Index()
     {
         return await _repository.ObterTodos();
     }
     
-    [HttpGet("catalogo/produtos/{id}")]
+    [HttpGet("produtos/{id}")]
     [ClaimsAuthorization("Catalogo", "Ler")]
     public async Task<Produto?> ProdutoDetalhe(Guid id)
     {

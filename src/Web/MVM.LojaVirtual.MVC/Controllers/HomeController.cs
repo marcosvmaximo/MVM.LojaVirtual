@@ -6,17 +6,22 @@ namespace MVM.LojaVirtual.MVC.Controllers;
 
 public class HomeController : Controller
 {
+    [HttpGet]
+    [Route("")]
+    [Route("home")]
     public IActionResult Index()
     {
         return View();
     }
 
+    [HttpGet]
+    [Route("privacidade")]
     public IActionResult Privacy()
     {
         return View();
     }
 
-    [Route("error/{id:length(3,3)}")]
+    [HttpGet("error/{id:length(3,3)}")]
     public IActionResult Error(int id)
     {
         var modelError = new ErrorViewModel();

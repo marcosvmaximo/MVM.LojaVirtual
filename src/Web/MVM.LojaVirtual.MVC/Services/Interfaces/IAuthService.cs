@@ -5,6 +5,6 @@ namespace MVM.LojaVirtual.MVC.Services.Interfaces;
 
 public interface IAuthService
 {
-    Task<AuthenticationResponseViewModel> Login(UsuarioLogin usuario);
-    Task<AuthenticationResponseViewModel> Registrar(UsuarioRegisto usuario);
+    Task<AuthenticationResponseViewModel> Login(UsuarioLoginViewModel usuario);
+    Task<AuthenticationResponseViewModel> Registrar(UsuarioRegistoViewModel usuario);
 }

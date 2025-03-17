@@ -17,17 +17,19 @@ public static class WebAppConfig
     public static IApplicationBuilder UseWebAppConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
     {
         // Configure the HTTP request pipeline.
-        if (!env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseExceptionHandler("/error/500");
-            app.UseStatusCodePagesWithRedirects("/error/{0}");
-            app.UseHsts();
-        }
-
+        // if (env.IsDevelopment())
+        // {
+        //     app.UseDeveloperExceptionPage();
+        // }
+        // else
+        // {
+        //     app.UseExceptionHandler("/error/500");
+        //     app.UseStatusCodePagesWithRedirects("/error/{0}");
+        //     app.UseHsts();
+        // }
+        app.UseExceptionHandler("/error/500");
+        app.UseStatusCodePagesWithRedirects("/error/{0}");
+        app.UseHsts();
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 
@@ -39,7 +41,16 @@ public static class WebAppConfig
         
         app.UseEndpoints(endPoints =>
         {
-            endPoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+            endPoints.MapControllerRoute(
+                name: "home",
+                pattern: "",
+                defaults: new { controller = "Home", action = "Index" }
+            );
+
+            endPoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller}/{action}/{id?}"
+            );
         });
 
         return app;

@@ -28,7 +28,7 @@ public class AuthController : MainController
     }
 
     [HttpPost("registrar")]
-    public async Task<ActionResult> Registrar(UsuarioRegisto request)
+    public async Task<ActionResult> Registrar(UsuarioRegistoViewModel request)
     {
         if (!ModelState.IsValid) return View(request);
 
@@ -52,7 +52,7 @@ public class AuthController : MainController
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult> Login(UsuarioLogin request, string? returnUrl = null)
+    public async Task<ActionResult> Login(UsuarioLoginViewModel request, string? returnUrl = null)
     {
         ViewData["ReturnUrl"] = returnUrl;
         if (!ModelState.IsValid) return View(request);

@@ -1,0 +1,51 @@
+@model MVM.LojaVirtual.MVC.Models.Catalogo.ProdutoViewModel
+
+@{
+    ViewData["Title"] = Model.Nome;
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="@Model.Imagem" alt="@Model.Nome" class="img-fluid rounded shadow-sm">
+        </div>
+        <div class="col-md-6">
+            <h1 class="display-6">@Model.Nome</h1>
+            <p class="text-muted">@Model.Descricao</p>
+            <h3 class="text-primary">R$ @Model.Valor.ToString("N2")</h3>
+            
+            <p>
+                <strong>Estoque:</strong> 
+                @if (Model.QuantidadeEstoque > 0)
+                {
+                    <span class="badge bg-success">Disponível (@Model.QuantidadeEstoque)</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">Esgotado</span>
+                }
+            </p>
+
+            <p><strong>Cadastro:</strong> @Model.DataCadastro.ToString("dd/MM/yyyy")</p>
+
+            @if (Model.Ativo)
+            {
+                <a href="#" class="btn btn-success btn-lg">
+                    <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho
+                </a>
+            }
+            else
+            {
+                <button class="btn btn-secondary btn-lg" disabled>
+                    <i class="bi bi-x-circle"></i> Indisponível
+                </button>
+            }
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="@Url.Action("ListarProdutos", "Catalogo")" class="btn btn-outline-primary">
+            <i class="bi bi-arrow-left"></i> Voltar para o Catálogo
+        </a>
+    </div>
+</div>
